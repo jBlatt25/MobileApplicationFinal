@@ -22,10 +22,7 @@ public class MainActivity extends AppCompatActivity {
             transaction.commit();
         }
 
-        /***
-         * Main Activity may handle the video loading, but fragment, 'video-view.java' should handle only the UI portion
-         *  - Correct me if I'm wrong, just writing what might be how it works or not - Frankie
-         */
+
 
     }
 }
