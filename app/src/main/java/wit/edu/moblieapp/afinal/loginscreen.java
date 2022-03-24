@@ -27,7 +27,7 @@ public class loginscreen extends AppCompatActivity {
         //        "(_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, password TEXT);";
         //db.execSQL(sql);
 
-        Button loginButton = (Button) findViewById(R.id.log_in_button);
+        Button loginButton = (Button) findViewById(R.id.button);
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
