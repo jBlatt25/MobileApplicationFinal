@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class loginscreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
