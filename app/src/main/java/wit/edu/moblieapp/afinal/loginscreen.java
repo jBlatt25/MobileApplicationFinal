@@ -17,20 +17,28 @@ public class loginscreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginscreen);
-        // Set database path
-        String path = "data/data" + getPackageName() + "/sample.db";
 
+        // Set database path
+//        String path = "data/data" + getPackageName() + "/sample.db";
+//        SQLiteDatabase db;
+//        db = SQLiteDatabase.openOrCreateDatabase(path, null);
+
+        //String sql = "CREATE TABLE IF NOT EXISTS user" +
+        //        "(_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, password TEXT);";
+        //db.execSQL(sql);
 
         Button loginButton = (Button) findViewById(R.id.log_in_button);
-
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Log.v("myApp", "BUTTON PRESS");
 
-                SQLiteDatabase db;
-                db = SQLiteDatabase.openOrCreateDatabase();
+
             }
         });
+
+
+
+//        db.close();
     }
 }
