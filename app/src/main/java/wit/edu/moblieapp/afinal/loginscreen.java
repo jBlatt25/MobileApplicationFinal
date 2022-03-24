@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,8 @@ public class loginscreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginscreen);
+        // Set database path
+        String path = "data/data" + getPackageName() + "/sample.db";
 
 
         Button loginButton = (Button) findViewById(R.id.log_in_button);
@@ -24,8 +27,9 @@ public class loginscreen extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Log.v("myApp", "BUTTON PRESS");
-                String path = "data/data" + getPackageName() + "/sample.db";
 
+                SQLiteDatabase db;
+                db = SQLiteDatabase.openOrCreateDatabase();
             }
         });
     }
