@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,26 +21,39 @@ public class loginscreen extends AppCompatActivity {
         setContentView(R.layout.loginscreen);
 
         // Set database path
-//        String path = "data/data" + getPackageName() + "/sample.db";
-//        SQLiteDatabase db;
-//        db = SQLiteDatabase.openOrCreateDatabase(path, null);
+        String path = "/data/data/" + getPackageName() + "/login.db";
+        SQLiteDatabase db;
+        db = SQLiteDatabase.openOrCreateDatabase(path, null);
 
-        //String sql = "CREATE TABLE IF NOT EXISTS user" +
-        //        "(_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, password TEXT);";
-        //db.execSQL(sql);
+        String sql = "CREATE TABLE IF NOT EXISTS Users" +
+                "(uuid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL);";
+        db.execSQL(sql);
+
+//        ContentValues values = new ContentValues();
+////        values.put("username","abc123");
+////        values.put("password","abc123");
+////        db.insert("Users", null, values);
+
 
         Button loginButton = (Button) findViewById(R.id.button);
-        loginButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+        loginButton.setOnClickListener((v) -> {
+
                 Log.v("myApp", "BUTTON PRESS");
+                String[] columns = {"uuid"};
+                String selection = "username=?";
+                String[] selectionArgs = {"abc123"};
+
+                Cursor c = db.query("Users", columns,selection,selectionArgs,null,null,null);
+                int count = c.getCount();
+                if(count>0){
+                    Log.v("myApp", String.format("%d counts",count));
+                }
+                c.close();
+                db.close();
 
 
-            }
         });
 
 
-
-//        db.close();
     }
 }
