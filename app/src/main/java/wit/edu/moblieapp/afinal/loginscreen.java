@@ -46,7 +46,14 @@ public class loginscreen extends AppCompatActivity {
                 Cursor c = db.query("Users", columns,selection,selectionArgs,null,null,null);
                 int count = c.getCount();
                 if(count>0){
-                    Log.v("myApp", String.format("%d counts",count));
+                    Log.v("myApp", String.format("%d matches the query",count));
+                }
+                while(c.moveToNext()){
+                    int uuid = c.getInt(c.getColumnIndexOrThrow("uuid"));
+                    String[] cCount = c.getColumnNames();
+                    for(String s : cCount){
+                        Log.v("myApp", s);
+                    }
                 }
                 c.close();
                 db.close();
