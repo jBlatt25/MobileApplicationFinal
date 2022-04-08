@@ -4,11 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/blattj/AndroidStudioProjects/Final2/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/blattj/AndroidStudioProjects/Final2/app/src/main/res/layout/activity_video.xml" value="0.1265625" />
+        <entry key="..\:/Users/blattj/AndroidStudioProjects/Final2/app/src/main/res/layout/activity_video.xml" value="0.2" />
         <entry key="..\:/Users/blattj/AndroidStudioProjects/Final2/app/src/main/res/layout/fragment_item.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/blattj/AndroidStudioProjects/Final2/app/src/main/res/layout/fragment_item_list.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/blattj/AndroidStudioProjects/Final2/app/src/main/res/layout/fragment_video__view.xml" value="0.2" />
         <entry key="..\:/Users/blattj/AndroidStudioProjects/Final2/app/src/main/res/layout/loginscreen.xml" value="0.132" />
+        <entry key="..\:/Users/blattj/AndroidStudioProjects/Final2/app/src/main/res/layout/video_rv_item.xml" value="0.15260416666666668" />
       </map>
     </option>
   </component>
