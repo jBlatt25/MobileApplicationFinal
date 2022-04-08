@@ -15,9 +15,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 
 public class loginscreen extends AppCompatActivity {
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +28,6 @@ public class loginscreen extends AppCompatActivity {
         setContentView(R.layout.loginscreen);
 
         String path = "/data/data/" + getPackageName() + "/login.db";
-        SQLiteDatabase db;
         db = SQLiteDatabase.openOrCreateDatabase(path, null);
 
         String sql = "CREATE TABLE IF NOT EXISTS Users" +
@@ -33,7 +35,7 @@ public class loginscreen extends AppCompatActivity {
         db.execSQL(sql);
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
-        TextView createButton = (TextView) findViewById(R.id.createLogin);
+        TextView createButton = (TextView) findViewById(R.id.createButton);
 
         loginButton.setOnClickListener(v -> {
                 Log.v("myApp", "loginLogin");
@@ -43,7 +45,7 @@ public class loginscreen extends AppCompatActivity {
                 String selection = "username=?";
                 String[] selectionArgs = {"abc123"};
 
-                Cursor c = db.query("Users", columns,selection,selectionArgs,null,null,null);
+                Cursor c = db.query("Users", columns,null,null,null,null,null);
                 int count = c.getCount();
                 if(count>0){
                     Log.v("myApp", String.format("%d matches the query",count));
@@ -68,5 +70,21 @@ public class loginscreen extends AppCompatActivity {
             finish();
         });
 
+        TextView dropButton = (TextView) findViewById(R.id.dropTable);
+
+        dropButton.setOnClickListener(v -> {
+            db.execSQL("DROP TABLE IF EXISTS Users");
+            db.close();
+            Intent intent = new Intent(loginscreen.this, loginscreen.class);
+            startActivity(intent);
+            finish();
+        });
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();
     }
 }

@@ -43,17 +43,23 @@ public class createaccount extends AppCompatActivity {
                 if(!userExist(usernameCreate.getText().toString(), db)){
                     Log.v("myApp", "User does not exist");
 
-                    ContentValues values = new ContentValues();
-                    values.put("username", usernameCreate.getText().toString());
-                    values.put("password", passwordCreate.getText().toString());
-                    db.insert("Users", null, values);
+                    if(passwordCreate.getText().length() < 7){
+                        Log.v("myApp", "Password needs to be longer than 7 characters");
+                        Toast.makeText(this, "Password needs to be longer than 7 characters", Toast.LENGTH_SHORT).show();
+                    } else {
 
-                    Log.v("myApp", "create");
-                    db.close();
+                        ContentValues values = new ContentValues();
+                        values.put("username", usernameCreate.getText().toString());
+                        values.put("password", passwordCreate.getText().toString());
+                        db.insert("Users", null, values);
 
-                    Intent intent = new Intent(createaccount.this, loginscreen.class);
-                    startActivity(intent);
-                    finish();
+                        Log.v("myApp", "create");
+                        db.close();
+
+                        Intent intent = new Intent(createaccount.this, loginscreen.class);
+                        startActivity(intent);
+                        finish();
+                    }
 
 
 
