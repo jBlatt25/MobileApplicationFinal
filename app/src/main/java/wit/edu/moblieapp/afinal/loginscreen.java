@@ -13,7 +13,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -36,50 +38,57 @@ public class loginscreen extends AppCompatActivity {
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
         TextView createButton = (TextView) findViewById(R.id.createButton);
+        EditText usernameLogin = (EditText) findViewById(R.id.usernameLogin);
+        EditText passwordLogin = (EditText) findViewById(R.id.passwordLogin);
 
         loginButton.setOnClickListener(v -> {
-                Log.v("myApp", "loginLogin");
 
+            if(usernameLogin.getText().toString().matches("") && passwordLogin.getText().toString().matches("")){
+                Toast.makeText(this, "no info provided", Toast.LENGTH_SHORT).show();
+            } else if(usernameLogin.getText().toString().matches("")){
+                Toast.makeText(this,"username is empty", Toast.LENGTH_SHORT).show();
+            } else if(passwordLogin.getText().toString().matches("")){
+                Toast.makeText(this,"password is empty", Toast.LENGTH_SHORT).show();
+            } else{
+                if(userExist(usernameLogin.getText().toString(), db)){
+                    String[] columns = {"uuid", "username", "password"};
+                    String selection = "username=?";
+                    String[] selectionArgs = {usernameLogin.getText().toString()};
 
-                String[] columns = {"uuid", "username", "password"};
-                String selection = "username=?";
-                String[] selectionArgs = {"abc123"};
-
-                Cursor c = db.query("Users", columns,null,null,null,null,null);
-                int count = c.getCount();
-                if(count>0){
-                    Log.v("myApp", String.format("%d matches the query",count));
+                    Cursor cLogin = db.query("Users", columns, selection, selectionArgs, null, null, null);
+                    while(cLogin.moveToNext()) {
+                        String passwordDB = cLogin.getString(cLogin.getColumnIndexOrThrow("password"));
+                        if (passwordLogin.getText().toString().equals(passwordDB)) {
+                            Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+                        } else{
+                            Toast.makeText(this, "Password incorrect", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
-                while(c.moveToNext()){
-                    int uuid = c.getInt(c.getColumnIndexOrThrow("uuid"));
-                    String username = c.getString(c.getColumnIndexOrThrow("username"));
-                    String password = c.getString(c.getColumnIndexOrThrow("password"));
-                    Log.v("myApp", String.format("%d / %s / %s", uuid, username, password));
-
-                }
-                c.close();
-
-
+            }
         });
 
         createButton.setOnClickListener(v ->{
-            Log.v("myApp", "createLogin");
             Intent intent = new Intent(loginscreen.this, createaccount.class);
             db.close();
             startActivity(intent);
             finish();
         });
 
-        TextView dropButton = (TextView) findViewById(R.id.dropTable);
+    }
 
-        dropButton.setOnClickListener(v -> {
-            db.execSQL("DROP TABLE IF EXISTS Users");
-            db.close();
-            Intent intent = new Intent(loginscreen.this, loginscreen.class);
-            startActivity(intent);
-            finish();
-        });
+    private boolean userExist(String username, SQLiteDatabase db){
 
+        String[] columns = {"uuid"};
+        String selection = "username=?";
+        String[] selectionArgs = {username};
+
+        Cursor c = db.query("Users", columns,selection,selectionArgs,null,null,null);
+        int count = c.getCount();
+
+        c.close();
+
+        return count > 0;
     }
 
     @Override

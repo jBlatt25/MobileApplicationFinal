@@ -67,12 +67,7 @@
                 android:text="@string/login_btn" />
 
         </LinearLayout>
-        <TextView
-            android:id="@+id/dropTable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="drop table"
-            android:clickable="true"/>
+
 
 
     </LinearLayout>

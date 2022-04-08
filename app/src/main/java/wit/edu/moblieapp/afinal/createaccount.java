@@ -53,6 +53,7 @@ public class createaccount extends AppCompatActivity {
                         values.put("password", passwordCreate.getText().toString());
                         db.insert("Users", null, values);
 
+
                         Log.v("myApp", "create");
                         db.close();
 
