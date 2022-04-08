@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,8 +32,10 @@ public class loginscreen extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Log.v("myApp", "BUTTON PRESS");
-
+                Intent intent = new Intent();
+                intent.setClass(loginscreen.this,VideoActivity.class);
+                startActivity(intent);
+                Log.v("myApp", "Login Button Press going to Video view");
 
             }
         });
