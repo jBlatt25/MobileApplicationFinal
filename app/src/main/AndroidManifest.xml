@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Final">
         <activity
+            android:name=".createaccount"
+            android:exported="false" />
+        <activity
             android:name=".loginscreen"
             android:exported="true">
             <intent-filter>

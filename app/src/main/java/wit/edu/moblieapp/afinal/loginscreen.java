@@ -6,12 +6,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.io.File;
 
 public class loginscreen extends AppCompatActivity {
 
@@ -20,7 +24,6 @@ public class loginscreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginscreen);
 
-        // Set database path
         String path = "/data/data/" + getPackageName() + "/login.db";
         SQLiteDatabase db;
         db = SQLiteDatabase.openOrCreateDatabase(path, null);
@@ -29,17 +32,14 @@ public class loginscreen extends AppCompatActivity {
                 "(uuid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL);";
         db.execSQL(sql);
 
-//        ContentValues values = new ContentValues();
-////        values.put("username","abc123");
-////        values.put("password","abc123");
-////        db.insert("Users", null, values);
+        Button loginButton = (Button) findViewById(R.id.loginButton);
+        TextView createButton = (TextView) findViewById(R.id.createLogin);
+
+        loginButton.setOnClickListener(v -> {
+                Log.v("myApp", "loginLogin");
 
 
-        Button loginButton = (Button) findViewById(R.id.button);
-        loginButton.setOnClickListener((v) -> {
-
-                Log.v("myApp", "BUTTON PRESS");
-                String[] columns = {"uuid"};
+                String[] columns = {"uuid", "username", "password"};
                 String selection = "username=?";
                 String[] selectionArgs = {"abc123"};
 
@@ -50,17 +50,23 @@ public class loginscreen extends AppCompatActivity {
                 }
                 while(c.moveToNext()){
                     int uuid = c.getInt(c.getColumnIndexOrThrow("uuid"));
-                    String[] cCount = c.getColumnNames();
-                    for(String s : cCount){
-                        Log.v("myApp", s);
-                    }
+                    String username = c.getString(c.getColumnIndexOrThrow("username"));
+                    String password = c.getString(c.getColumnIndexOrThrow("password"));
+                    Log.v("myApp", String.format("%d / %s / %s", uuid, username, password));
+
                 }
                 c.close();
-                db.close();
 
 
         });
 
+        createButton.setOnClickListener(v ->{
+            Log.v("myApp", "createLogin");
+            Intent intent = new Intent(loginscreen.this, createaccount.class);
+            db.close();
+            startActivity(intent);
+            finish();
+        });
 
     }
 }
