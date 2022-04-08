@@ -1,5 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    ext {
+        maven = 'https://dl.bintray.com/videolan/Android'
+    }
     repositories {
         google()
         mavenCentral()
