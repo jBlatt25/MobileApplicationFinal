@@ -33,7 +33,7 @@ public class loginscreen extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent();
-                intent.setClass(loginscreen.this,VideoActivity.class);
+                intent.setClass(loginscreen.this,MainActivity.class);
                 startActivity(intent);
                 Log.v("myApp", "Login Button Press going to Video view");
 

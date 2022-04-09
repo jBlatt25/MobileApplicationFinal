@@ -1,23 +1,27 @@
 package wit.edu.moblieapp.afinal;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
-import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class VideoActivity extends AppCompatActivity {
+public class recyclerFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ArrayList<VideoRVModel> recyclerDataArrayList;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video);
-        recyclerView=findViewById(R.id.idCourseRV);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.recycler_fragment, container, false);
+
+        recyclerView= rootView.findViewById(R.id.idCourseRV);
 
         // created new array list..
         recyclerDataArrayList=new ArrayList<>();
@@ -30,15 +34,16 @@ public class VideoActivity extends AppCompatActivity {
         recyclerDataArrayList.add(new VideoRVModel("Node Js",R.mipmap.ic_launcher));
 
         // added data from arraylist to adapter class.
-        RecyclerViewAdapter adapter=new RecyclerViewAdapter(recyclerDataArrayList,this);
+        RecyclerViewAdapter adapter=new RecyclerViewAdapter(recyclerDataArrayList, rootView.getContext());
 
         // setting grid layout manager to implement grid view.
         // in this method '2' represents number of columns to be displayed in grid view.
-        GridLayoutManager layoutManager=new GridLayoutManager(this,2);
+        GridLayoutManager layoutManager=new GridLayoutManager(rootView.getContext(), 2);
 
         // at last set adapter to recycler view.
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+        return rootView;
     }
 }
