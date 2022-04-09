@@ -1,44 +1,29 @@
 package wit.edu.moblieapp.afinal;
 
-import android.graphics.Bitmap;
 
-public class VideoRVModel
-{
+public class VideoRVModel {
 
-    //variable names
-    private  String VideoName;
-    private  String VideoPath;
-    private Bitmap  thumbNail;
+    private String title;
+    private int imgid;
 
-    // construtor of the model
-    public VideoRVModel(String videoName, String videoPath, Bitmap thumbNail)
-    {
-       this.VideoName = videoName;
-       this.VideoPath = videoPath;
-       this.thumbNail = thumbNail;
+    public String getTitle() {
+        return title;
     }
 
-    public String getVideoName() {
-        return VideoName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setVideoName(String videoName) {
-        VideoName = videoName;
+    public int getImgid() {
+        return imgid;
     }
 
-    public String getVideoPath() {
-        return VideoPath;
+    public void setImgid(int imgid) {
+        this.imgid = imgid;
     }
 
-    public void setVideoPath(String videoPath) {
-        VideoPath = videoPath;
-    }
-
-    public Bitmap getThumbNail() {
-        return thumbNail;
-    }
-
-    public void setThumbNail(Bitmap thumbNail) {
-        this.thumbNail = thumbNail;
+    public VideoRVModel(String title, int imgid) {
+        this.title = title;
+        this.imgid = imgid;
     }
 }

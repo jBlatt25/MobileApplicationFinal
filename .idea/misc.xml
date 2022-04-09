@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Keivian/AndroidStudioProjects/MobileApplicationFinal/app/src/main/res/drawable/ic_gfglogo.xml" value="0.28717948717948716" />
+        <entry key="..\:/Users/Keivian/AndroidStudioProjects/MobileApplicationFinal/app/src/main/res/layout/activity_video.xml" value="0.1339918946301925" />
+        <entry key="..\:/Users/Keivian/AndroidStudioProjects/MobileApplicationFinal/app/src/main/res/layout/video_rv_item.xml" value="0.125" />
         <entry key="..\:/Users/blattj/AndroidStudioProjects/Final2/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.16875" />
         <entry key="..\:/Users/blattj/AndroidStudioProjects/Final2/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/blattj/AndroidStudioProjects/Final2/app/src/main/res/layout/activity_video.xml" value="0.2" />
