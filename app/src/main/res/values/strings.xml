@@ -4,5 +4,5 @@
     <string name="password">Password</string>
     <string name="login_btn">Login</string>
     <string name="image">Image</string>
-
+    <string name="create_btn">Create Account</string>
 </resources>
