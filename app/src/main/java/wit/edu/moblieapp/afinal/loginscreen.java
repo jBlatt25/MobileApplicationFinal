@@ -64,6 +64,9 @@ public class loginscreen extends AppCompatActivity {
                             Toast.makeText(this, "Password incorrect", Toast.LENGTH_SHORT).show();
                         }
                     }
+                    cLogin.close();
+                } else{
+                    Toast.makeText(this, "User does not exist", Toast.LENGTH_SHORT).show();
                 }
             }
         });

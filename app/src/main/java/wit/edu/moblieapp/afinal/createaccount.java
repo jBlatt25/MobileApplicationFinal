@@ -31,26 +31,28 @@ public class createaccount extends AppCompatActivity {
         EditText passwordCreate = (EditText) findViewById(R.id.passwordCreate);
 
         createBtn.setOnClickListener(v ->{
-            if(usernameCreate.getText().toString().matches("") && passwordCreate.getText().toString().matches("")){
+            String username = usernameCreate.getText().toString().trim();
+            String password = passwordCreate.getText().toString().trim();
+            if(username.matches("") && password.matches("")){
                 Toast.makeText(this, "no info provided", Toast.LENGTH_SHORT).show();
-            } else if(usernameCreate.getText().toString().matches("")){
+            } else if(username.matches("")){
                 Toast.makeText(this,"username is empty", Toast.LENGTH_SHORT).show();
-            } else if(passwordCreate.getText().toString().matches("")){
+            } else if(password.matches("")){
                 Toast.makeText(this,"password is empty", Toast.LENGTH_SHORT).show();
-            } else{
+            }else{
 
 
-                if(!userExist(usernameCreate.getText().toString(), db)){
+                if(!userExist(username, db)){
                     Log.v("myApp", "User does not exist");
 
-                    if(passwordCreate.getText().length() < 7){
+                    if(password.length() < 7){
                         Log.v("myApp", "Password needs to be longer than 7 characters");
                         Toast.makeText(this, "Password needs to be longer than 7 characters", Toast.LENGTH_SHORT).show();
                     } else {
 
                         ContentValues values = new ContentValues();
-                        values.put("username", usernameCreate.getText().toString());
-                        values.put("password", passwordCreate.getText().toString());
+                        values.put("username", username);
+                        values.put("password", password);
                         db.insert("Users", null, values);
 
 
@@ -61,25 +63,16 @@ public class createaccount extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }
-
-
-
                 } else{
                     Log.v("myApp", "User exists");
                     Toast.makeText(this, "Username taken", Toast.LENGTH_SHORT).show();
                 }
-
-
-
-
             }
-
         });
 
     }
 
     private boolean userExist(String username, SQLiteDatabase db){
-
         String[] columns = {"uuid"};
         String selection = "username=?";
         String[] selectionArgs = {username};
@@ -88,8 +81,7 @@ public class createaccount extends AppCompatActivity {
         int count = c.getCount();
 
         c.close();
-
-
         return count > 0;
     }
+
 }
