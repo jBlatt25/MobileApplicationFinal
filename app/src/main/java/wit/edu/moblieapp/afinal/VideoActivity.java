@@ -23,11 +23,11 @@ public class VideoActivity extends AppCompatActivity {
         recyclerDataArrayList=new ArrayList<>();
 
         // added data to array list
-        recyclerDataArrayList.add(new VideoRVModel("DSA",R.drawable.ic_gfglogo));
-        recyclerDataArrayList.add(new VideoRVModel("JAVA",R.drawable.ic_gfglogo));
-        recyclerDataArrayList.add(new VideoRVModel("C++",R.drawable.ic_gfglogo));
-        recyclerDataArrayList.add(new VideoRVModel("Python",R.drawable.ic_gfglogo));
-        recyclerDataArrayList.add(new VideoRVModel("Node Js",R.drawable.ic_gfglogo));
+        recyclerDataArrayList.add(new VideoRVModel("DSA",R.mipmap.ic_launcher));
+        recyclerDataArrayList.add(new VideoRVModel("JAVA",R.mipmap.ic_launcher));
+        recyclerDataArrayList.add(new VideoRVModel("C++",R.mipmap.ic_launcher));
+        recyclerDataArrayList.add(new VideoRVModel("Python",R.mipmap.ic_launcher));
+        recyclerDataArrayList.add(new VideoRVModel("Node Js",R.mipmap.ic_launcher));
 
         // added data from arraylist to adapter class.
         RecyclerViewAdapter adapter=new RecyclerViewAdapter(recyclerDataArrayList,this);
