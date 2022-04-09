@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Final">
         <activity
-            android:name=".createaccount"
+            android:name=".CreateActivity"
             android:exported="false" />
         <activity
-            android:name=".loginscreen"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

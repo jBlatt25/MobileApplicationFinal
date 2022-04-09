@@ -3,7 +3,6 @@ package wit.edu.moblieapp.afinal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,13 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class createaccount extends AppCompatActivity {
+public class CreateActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.createaccount);
+        setContentView(R.layout.activity_create);
 
         // Set database path
         String path = "/data/data/" + getPackageName() + "/login.db";
@@ -59,7 +58,7 @@ public class createaccount extends AppCompatActivity {
                         Log.v("myApp", "create");
                         db.close();
 
-                        Intent intent = new Intent(createaccount.this, loginscreen.class);
+                        Intent intent = new Intent(CreateActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     }
