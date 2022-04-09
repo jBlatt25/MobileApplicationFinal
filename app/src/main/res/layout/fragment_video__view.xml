@@ -12,4 +12,11 @@
         android:layout_height="match_parent"
         android:text="Video View Fragment" />
 
+
+    <org.videolan.libvlc.util.VLCVideoLayout
+        android:id="@+id/video_layout"
+        android:layout_width="338dp"
+        android:layout_height="649dp"
+        android:fitsSystemWindows="false" />
+
 </FrameLayout>
