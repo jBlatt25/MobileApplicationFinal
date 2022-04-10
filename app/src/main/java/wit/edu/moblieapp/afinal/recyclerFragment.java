@@ -42,7 +42,6 @@ public class recyclerFragment extends Fragment {
         FloatingActionButton fab = rootView.findViewById(R.id.addBtn);
 
         fab.setOnClickListener(v -> {
-            Log.v("myApp", "Add clicked");
             FragmentManager fm = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
             Fragment addVideoFrag = new addVideoFragment();
