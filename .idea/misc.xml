@@ -15,6 +15,14 @@
         <entry key="..\:/Users/blattj/AndroidStudioProjects/Final2/app/src/main/res/layout/loginscreen.xml" value="0.132" />
         <entry key="..\:/Users/guarinof/AndroidStudioProjects/MobileApplicationFinal/app/src/main/res/layout/activity_create.xml" value="0.1" />
         <entry key="..\:/Users/guarinof/AndroidStudioProjects/MobileApplicationFinal/app/src/main/res/layout/activity_login.xml" value="0.1838768115942029" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1905" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.14764492753623187" />
+        <entry key="app/src/main/res/layout/fragment_add_video.xml" value="0.22663675944010414" />
+        <entry key="app/src/main/res/layout/fragment_item.xml" value="0.18229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_video__view.xml" value="0.18229166666666666" />
+        <entry key="app/src/main/res/layout/menu_main.xml" value="0.14764492753623187" />
+        <entry key="app/src/main/res/layout/recycler_fragment.xml" value="0.18229166666666666" />
+        <entry key="app/src/main/res/layout/video_rv_item.xml" value="0.1796875" />
       </map>
     </option>
   </component>
