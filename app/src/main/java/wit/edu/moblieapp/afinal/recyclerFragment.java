@@ -24,6 +24,8 @@ public class recyclerFragment extends Fragment {
         recyclerView= rootView.findViewById(R.id.idCourseRV);
 
         // created new array list..
+
+        //COMMENT
         recyclerDataArrayList=new ArrayList<>();
 
         // added data to array list
