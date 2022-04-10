@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class MainActivity extends AppCompatActivity {
     SQLiteDatabase db;
 
@@ -20,20 +22,17 @@ public class MainActivity extends AppCompatActivity {
         String path = "/data/data/" + getPackageName() + "/login.db";
         db = SQLiteDatabase.openOrCreateDatabase(path, null);
 
-        String sql = "CREATE TABLE IF NOT EXISTS Video" +
-                "(vid INTEGER PRIMARY KEY AUTOINCREMENT, path TEXT NOT NULL);";
-        db.execSQL(sql);
-
         Bundle bundle = this.getIntent().getExtras();
-        int uuid = bundle.getInt("uuid");
-        Log.v("myApp", String.format("UUID: %d received",uuid));
 
         if(savedInstanceState == null){
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
             Fragment recyclerView = new recyclerFragment();
+            recyclerView.setArguments(bundle);
             transaction.replace(R.id.container, recyclerView);
             transaction.commit();
         }
+
+
     }
 }

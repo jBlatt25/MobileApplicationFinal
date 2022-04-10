@@ -23,9 +23,14 @@ public class LoginActivity extends AppCompatActivity {
         String path = "/data/data/" + getPackageName() + "/login.db";
         db = SQLiteDatabase.openOrCreateDatabase(path, null);
 
-        String sql = "CREATE TABLE IF NOT EXISTS Users" +
+        String UserSQL = "CREATE TABLE IF NOT EXISTS Users" +
                 "(uuid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL);";
-        db.execSQL(sql);
+
+        String VideoSQL = "CREATE TABLE IF NOT EXISTS Video" +
+                "(vid INTEGER PRIMARY KEY AUTOINCREMENT, uuid INTEGER NOT NULL, name TEXT NOT NULL, path TEXT NOT NULL, FOREIGN KEY(uuid) REFERENCES Users(uuid));";
+
+        db.execSQL(UserSQL);
+        db.execSQL(VideoSQL);
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
         TextView createButton = (TextView) findViewById(R.id.createButton);
