@@ -54,8 +54,10 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
 
                             // Send intent to video viewing main activity
-                            Intent intent = new Intent();
-                            intent.setClass(LoginActivity.this,MainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("uuid", uuid);
+                            intent.putExtras(bundle);
                             startActivity(intent);
                             Log.v("myApp", "Login Button Press going to Video view");
                         } else{
