@@ -12,12 +12,18 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
 
+    public interface OnItemClickListener {
+        void onItemClick(VideoRVModel item);
+    }
+
     private ArrayList<VideoRVModel> courseDataArrayList;
     private Context mcontext;
+    private OnItemClickListener listener;
 
-    public RecyclerViewAdapter(ArrayList<VideoRVModel> recyclerDataArrayList, Context mcontext) {
+    public RecyclerViewAdapter(ArrayList<VideoRVModel> recyclerDataArrayList, Context mcontext, OnItemClickListener listener) {
         this.courseDataArrayList = recyclerDataArrayList;
         this.mcontext = mcontext;
+        this.listener = listener;
     }
 
     @NonNull
@@ -34,6 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         VideoRVModel recyclerData = courseDataArrayList.get(position);
         holder.courseTV.setText(recyclerData.getTitle());
         holder.courseIV.setImageResource(recyclerData.getImgid());
+        holder.bind(recyclerData, listener);
     }
 
     @Override
@@ -52,6 +59,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             courseTV = itemView.findViewById(R.id.idTVCourse);
             courseIV = itemView.findViewById(R.id.idIVcourseIV);
+        }
+        public void bind(final VideoRVModel item, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
         }
     }
 }
