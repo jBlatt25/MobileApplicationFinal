@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -31,6 +32,8 @@ public class recyclerFragment extends Fragment {
         recyclerView= rootView.findViewById(R.id.idCourseRV);
 
         // created new array list..
+
+        //COMMENT
         recyclerDataArrayList=new ArrayList<>();
 
         String path = "/data/data/" + getActivity().getPackageName() + "/login.db";
@@ -71,7 +74,17 @@ public class recyclerFragment extends Fragment {
 
 
         // added data from arraylist to adapter class.
-        RecyclerViewAdapter adapter=new RecyclerViewAdapter(recyclerDataArrayList, rootView.getContext());
+        RecyclerViewAdapter adapter=new RecyclerViewAdapter(recyclerDataArrayList, rootView.getContext(), new RecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(VideoRVModel item) {
+                Toast.makeText(getContext(), "FUCK YOU", Toast.LENGTH_SHORT).show();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fm.beginTransaction();
+                Fragment video_view = new Video_View();
+                transaction.replace(R.id.container, video_view).addToBackStack("tag");
+                transaction.commit();
+            }
+        });
 
         // setting grid layout manager to implement grid view.
         // in this method '2' represents number of columns to be displayed in grid view.
