@@ -1,6 +1,7 @@
 package wit.edu.moblieapp.afinal;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.CallSuper;
@@ -48,6 +49,9 @@ public class Video_View extends Fragment {
 
 
         final ArrayList<String> args = new ArrayList<>();
+        args.add("--no-drop-late-frames");
+        args.add("--no-skip-frames");
+        args.add("--rtsp-tcp");
         args.add("-vvv");
         mLibVLC = new LibVLC(inflater.getContext(), args);
         mMediaPlayer = new MediaPlayer(mLibVLC);
@@ -71,13 +75,23 @@ public class Video_View extends Fragment {
 
         //final Media media = new Media(mLibVLC, String.valueOf(getResources().openRawResource(R.raw.boston_split)));
         final Media media;
-        try {
-            media = new Media(mLibVLC, getContext().getResources().getAssets().openFd("boston_split.mp4"));
-            mMediaPlayer.setMedia(media);
-            media.release();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        Uri uri = Uri.parse("rtmp://192.168.1.117/live/test");
+
+
+        media = new Media(mLibVLC, uri);
+        media.addOption(":network-caching=150");
+        media.addOption(":clock-jitter=0");
+        media.addOption(":clock-synchro=0");
+        mMediaPlayer.setMedia(media);
+        media.release();
+
+        //Local video fashion
+//            media = new Media(mLibVLC, getContext().getResources().getAssets().openFd("boston_split.mp4"));
+//            mMediaPlayer.setMedia(media);
+//            media.release();
+
+
         mMediaPlayer.play();
     }
 }
