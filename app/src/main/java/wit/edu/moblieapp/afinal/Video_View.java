@@ -36,6 +36,7 @@ public class Video_View extends Fragment {
 
     private static String PACKAGE_NAME;
 
+
     /***
      * Main Activity may handle the video loading, but fragment, 'video-view.java' should handle only the UI portion
      *  - Correct me if I'm wrong, just writing what might be how it works or not - Frankie
@@ -52,14 +53,15 @@ public class Video_View extends Fragment {
         args.add("--no-drop-late-frames");
         args.add("--no-skip-frames");
         args.add("--rtsp-tcp");
-        args.add("-vvv");
+
         mLibVLC = new LibVLC(inflater.getContext(), args);
         mMediaPlayer = new MediaPlayer(mLibVLC);
         mVideoLayout = rootView.findViewById(R.id.video_layout);
 
 
-        PACKAGE_NAME = inflater.getContext().getPackageName();
 
+
+        PACKAGE_NAME = inflater.getContext().getPackageName();
 
         return rootView;
     }
@@ -76,7 +78,12 @@ public class Video_View extends Fragment {
         //final Media media = new Media(mLibVLC, String.valueOf(getResources().openRawResource(R.raw.boston_split)));
         final Media media;
 
-        Uri uri = Uri.parse("rtmp://192.168.1.117/live/test");
+
+        Bundle bundle = getArguments();
+        String streamURL = bundle.getString("URI");
+        String streamKey = bundle.getString("StreamKey");
+        String _uri = streamURL + "/" + streamKey;
+        Uri uri = Uri.parse(_uri);
 
 
         media = new Media(mLibVLC, uri);
@@ -93,5 +100,13 @@ public class Video_View extends Fragment {
 
 
         mMediaPlayer.play();
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        mMediaPlayer.stop();
     }
 }

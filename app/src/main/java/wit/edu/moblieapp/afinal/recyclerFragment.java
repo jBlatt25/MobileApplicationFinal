@@ -67,7 +67,7 @@ public class recyclerFragment extends Fragment {
         Cursor c = db.query("Video", column, selection, selectionArgs, null, null, null);
 
         while(c.moveToNext()){
-            recyclerDataArrayList.add(new VideoRVModel(c.getString(c.getColumnIndexOrThrow("name")),R.mipmap.ic_launcher));
+            recyclerDataArrayList.add(new VideoRVModel(c.getString(c.getColumnIndexOrThrow("name")), c.getString(c.getColumnIndexOrThrow("path")),R.mipmap.ic_launcher));
         }
 
 
@@ -81,6 +81,11 @@ public class recyclerFragment extends Fragment {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fm.beginTransaction();
                 Fragment video_view = new Video_View();
+                Bundle bundle = new Bundle();
+                bundle.putString("URI",item.getTitle());
+                bundle.putString("StreamKey",item.getStreamKey());
+                video_view.setArguments(bundle);
+
                 transaction.replace(R.id.container, video_view).addToBackStack("tag");
                 transaction.commit();
             }
