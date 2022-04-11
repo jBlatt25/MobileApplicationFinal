@@ -12,6 +12,8 @@
         <entry key="..\:/Users/guarinof/AndroidStudioProjects/MobileApplicationFinal/app/src/main/res/layout/activity_create.xml" value="0.1" />
         <entry key="..\:/Users/guarinof/AndroidStudioProjects/MobileApplicationFinal/app/src/main/res/layout/activity_login.xml" value="0.1838768115942029" />
         <entry key="..\:/Users/guarinof/AndroidStudioProjects/MobileApplicationFinal/app/src/main/res/layout/fragment_video__view.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_add_video.xml" value="0.17291666666666666" />
+        <entry key="app/src/main/res/layout/fragment_recycler.xml" value="0.17291666666666666" />
       </map>
     </option>
   </component>
