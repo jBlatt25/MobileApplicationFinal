@@ -38,8 +38,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
         // Set the data to textview and imageview.
         VideoRVModel recyclerData = courseDataArrayList.get(position);
-        holder.courseTV.setText(recyclerData.getTitle());
-        holder.courseIV.setImageResource(recyclerData.getImgid());
+        holder.itemName.setText(recyclerData.getTitle());
+        holder.thumbnail.setImageResource(recyclerData.getImgid());
         holder.bind(recyclerData, listener);
     }
 
@@ -52,13 +52,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // View Holder Class to handle Recycler View.
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView courseTV;
-        private ImageView courseIV;
+        private TextView itemName;
+        private ImageView thumbnail;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
-            courseTV = itemView.findViewById(R.id.idTVCourse);
-            courseIV = itemView.findViewById(R.id.idIVcourseIV);
+            itemName = itemView.findViewById(R.id.itemName);
+            thumbnail = itemView.findViewById(R.id.thumbnail);
         }
         public void bind(final VideoRVModel item, final OnItemClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
