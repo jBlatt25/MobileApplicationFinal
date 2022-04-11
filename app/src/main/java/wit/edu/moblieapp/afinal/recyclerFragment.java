@@ -77,7 +77,7 @@ public class recyclerFragment extends Fragment {
         RecyclerViewAdapter adapter=new RecyclerViewAdapter(recyclerDataArrayList, rootView.getContext(), new RecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(VideoRVModel item) {
-                Toast.makeText(getContext(), "FUCK YOU", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Switching to Video", Toast.LENGTH_SHORT).show();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fm.beginTransaction();
                 Fragment video_view = new Video_View();
