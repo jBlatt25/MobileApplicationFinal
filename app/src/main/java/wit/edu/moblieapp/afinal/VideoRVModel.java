@@ -6,6 +6,7 @@ public class VideoRVModel {
     private String title;
     private int imgid;
     private String streamKey = "";
+    private int vid;
 
     public String getTitle() {
         return title;
@@ -29,13 +30,20 @@ public class VideoRVModel {
         return this.streamKey;
     }
 
+    public int getVid(){
+        return vid;
+    }
 
-    public VideoRVModel(String title, String streamKey, int imgid) {
+    public void setVid(int vid) {
+        this.vid = vid;
+    }
+
+    public VideoRVModel(String title, String streamKey, int vid, int imgid) {
         this.title = title;
         if(!streamKey.isEmpty()){
             this.streamKey = streamKey;
         }
-
+        this.vid = vid;
         this.imgid = imgid;
 
     }
