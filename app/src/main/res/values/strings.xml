@@ -8,4 +8,8 @@
     <string name="url_label">URL:</string>
     <string name="key_label">Key:</string>
     <string name="submit_btn">Submit</string>
+    <string name="change_btn">Change</string>
+    <string name="delete_btn">Delete</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

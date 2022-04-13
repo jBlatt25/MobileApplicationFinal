@@ -1,7 +1,9 @@
 package wit.edu.moblieapp.afinal;
 
 import android.content.Context;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,6 +16,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public interface OnItemClickListener {
         void onItemClick(VideoRVModel item);
+        void onLongItemClick(VideoRVModel item);
     }
 
     private ArrayList<VideoRVModel> courseDataArrayList;
@@ -66,7 +69,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     listener.onItemClick(item);
                 }
             });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    listener.onLongItemClick(item);
+                    return false;
+                }
+            });
         }
+
     }
 }
 

@@ -47,11 +47,14 @@ public class addVideoFragment extends Fragment {
 
             db.close();
 
+            Bundle newBundle = new Bundle();
+            newBundle.putInt("uuid", uuid);
+
             FragmentManager fm = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
             Fragment recyclerFragment = new recyclerFragment();
-            recyclerFragment.setArguments(bundle);
-            transaction.replace(R.id.container, recyclerFragment).addToBackStack("backRecycler");
+            recyclerFragment.setArguments(newBundle);
+            transaction.replace(R.id.container, recyclerFragment);
             transaction.commit();
 
 

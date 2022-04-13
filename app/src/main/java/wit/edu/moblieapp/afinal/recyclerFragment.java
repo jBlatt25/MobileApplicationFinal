@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,9 +13,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,12 +36,15 @@ public class recyclerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recycler, container, false);
 
-        recyclerView= rootView.findViewById(R.id.idCourseRV);
+        recyclerView= rootView.findViewById(R.id.thumbnailRV);
 
         // created new array list..
 
         //COMMENT
-        recyclerDataArrayList=new ArrayList<>();
+        recyclerDataArrayList = new ArrayList<>();
+
+        registerForContextMenu(recyclerView);
+
 
         String path = "/data/data/" + getActivity().getPackageName() + "/login.db";
         db = SQLiteDatabase.openOrCreateDatabase(path, null);
@@ -52,13 +63,6 @@ public class recyclerFragment extends Fragment {
             transaction.commit();
         });
 
-        // added data to array list
-//        recyclerDataArrayList.add(new VideoRVModel("DSA",R.mipmap.ic_launcher));
-//        recyclerDataArrayList.add(new VideoRVModel("JAVA",R.mipmap.ic_launcher));
-//        recyclerDataArrayList.add(new VideoRVModel("C++",R.mipmap.ic_launcher));
-//        recyclerDataArrayList.add(new VideoRVModel("Python",R.mipmap.ic_launcher));
-//        recyclerDataArrayList.add(new VideoRVModel("Node Js",R.mipmap.ic_launcher));
-
         String[] column = {"vid", "uuid", "name", "path"};
         String selection = "uuid=?";
         String[] selectionArgs = {String.valueOf(uuid)};
@@ -66,7 +70,10 @@ public class recyclerFragment extends Fragment {
         Cursor c = db.query("Video", column, selection, selectionArgs, null, null, null);
 
         while(c.moveToNext()){
-            recyclerDataArrayList.add(new VideoRVModel(c.getString(c.getColumnIndexOrThrow("name")), c.getString(c.getColumnIndexOrThrow("path")),R.mipmap.ic_launcher));
+            String name = c.getString(c.getColumnIndexOrThrow("name"));
+            String streamKey = c.getString(c.getColumnIndexOrThrow("path"));
+            int vid = c.getInt(c.getColumnIndexOrThrow("vid"));
+            recyclerDataArrayList.add(new VideoRVModel(name, streamKey, vid, R.mipmap.ic_launcher));
         }
 
 
@@ -88,6 +95,26 @@ public class recyclerFragment extends Fragment {
                 transaction.replace(R.id.container, video_view).addToBackStack("tag");
                 transaction.commit();
             }
+
+            @Override
+            public void onLongItemClick(VideoRVModel item) {
+                Toast.makeText(getContext(),String.format("%d just long clicked",item.getVid()), Toast.LENGTH_SHORT).show();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fm.beginTransaction();
+                Fragment editVideoView = new EditVideoFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("URI",item.getTitle());
+                bundle.putString("StreamKey",item.getStreamKey());
+                bundle.putInt("vid", item.getVid());
+                bundle.putInt("uuid", uuid);
+                editVideoView.setArguments(bundle);
+
+                transaction.replace(R.id.container, editVideoView).addToBackStack("tag");
+                transaction.commit();
+
+
+
+            }
         });
 
         // setting grid layout manager to implement grid view.
@@ -100,4 +127,5 @@ public class recyclerFragment extends Fragment {
 
         return rootView;
     }
+
 }

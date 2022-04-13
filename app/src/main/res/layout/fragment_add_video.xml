@@ -8,6 +8,14 @@
     android:gravity="center"
     tools:context=".addVideoFragment">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Camera"
+            android:textColor="@color/black"
+            android:textSize="50sp"
+            android:layout_marginBottom="100sp"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -32,7 +40,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100sp">
             <TextView
                 android:id="@+id/pathCreate"
                 android:layout_width="wrap_content"
