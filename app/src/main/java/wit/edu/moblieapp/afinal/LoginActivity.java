@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtras(bundle);
                             startActivity(intent);
                             Log.v("myApp", "Login Button Press going to Video view");
+
                         } else{
                             Toast.makeText(this, "Password incorrect", Toast.LENGTH_SHORT).show();
                         }
@@ -100,8 +101,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        db.close();
+    protected void onPause() {
+        super.onPause();
+        EditText usernameLogin = (EditText) findViewById(R.id.usernameLogin);
+        EditText passwordLogin = (EditText) findViewById(R.id.passwordLogin);
+        usernameLogin.setText("");
+        passwordLogin.setText("");
     }
 }
