@@ -1,7 +1,6 @@
 package wit.edu.moblieapp.afinal;
 
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
@@ -9,14 +8,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class addVideoFragment extends Fragment {
+public class AddVideoFragment extends Fragment {
     SQLiteDatabase db;
 
     @Override
@@ -52,7 +50,7 @@ public class addVideoFragment extends Fragment {
 
             FragmentManager fm = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
-            Fragment recyclerFragment = new recyclerFragment();
+            Fragment recyclerFragment = new RecyclerFragment();
             recyclerFragment.setArguments(newBundle);
             transaction.replace(R.id.container, recyclerFragment);
             transaction.commit();

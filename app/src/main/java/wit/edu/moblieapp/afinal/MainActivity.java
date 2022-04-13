@@ -8,12 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
     SQLiteDatabase db;
@@ -31,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         if(savedInstanceState == null){
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
-            Fragment recyclerView = new recyclerFragment();
+            Fragment recyclerView = new RecyclerFragment();
             recyclerView.setArguments(bundle);
             transaction.replace(R.id.container, recyclerView);
             transaction.commit();

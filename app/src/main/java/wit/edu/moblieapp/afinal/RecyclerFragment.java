@@ -4,8 +4,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,20 +11,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
-import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class recyclerFragment extends Fragment {
+public class RecyclerFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ArrayList<VideoRVModel> recyclerDataArrayList;
@@ -57,7 +49,7 @@ public class recyclerFragment extends Fragment {
         fab.setOnClickListener(v -> {
             FragmentManager fm = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
-            Fragment addVideoFrag = new addVideoFragment();
+            Fragment addVideoFrag = new AddVideoFragment();
             addVideoFrag.setArguments(bundle);
             transaction.replace(R.id.container, addVideoFrag).addToBackStack("backVideo");
             transaction.commit();
@@ -86,7 +78,7 @@ public class recyclerFragment extends Fragment {
                 Toast.makeText(getContext(), "Switching to Video", Toast.LENGTH_SHORT).show();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fm.beginTransaction();
-                Fragment video_view = new Video_View();
+                Fragment video_view = new VideoViewFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("URI",item.getTitle());
                 bundle.putString("StreamKey",item.getStreamKey());

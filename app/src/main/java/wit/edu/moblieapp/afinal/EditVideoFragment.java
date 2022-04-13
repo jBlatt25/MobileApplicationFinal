@@ -57,7 +57,7 @@ public class EditVideoFragment extends Fragment {
 
             FragmentManager fm = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
-            Fragment recyclerFragment = new recyclerFragment();
+            Fragment recyclerFragment = new RecyclerFragment();
             recyclerFragment.setArguments(newBundle);
             transaction.replace(R.id.container, recyclerFragment);
             transaction.commit();
@@ -75,7 +75,7 @@ public class EditVideoFragment extends Fragment {
 
             FragmentManager fm = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
-            Fragment recyclerFragment = new recyclerFragment();
+            Fragment recyclerFragment = new RecyclerFragment();
             recyclerFragment.setArguments(newBundle);
             transaction.replace(R.id.container, recyclerFragment);
             transaction.commit();
