@@ -90,7 +90,6 @@ public class RecyclerFragment extends Fragment {
 
             @Override
             public void onLongItemClick(VideoRVModel item) {
-                Toast.makeText(getContext(),String.format("%d just long clicked",item.getVid()), Toast.LENGTH_SHORT).show();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fm.beginTransaction();
                 Fragment editVideoView = new EditVideoFragment();
