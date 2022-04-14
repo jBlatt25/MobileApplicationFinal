@@ -3,7 +3,7 @@
 
 Set up a private Raspberry Pi RTMP Server 
 
-Follow these instructions:
+via these instructions:
 https://obsproject.com/forum/resources/how-to-set-up-your-own-private-rtmp-server-using-nginx.50/
 
 
