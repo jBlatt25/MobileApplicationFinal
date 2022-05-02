@@ -2,6 +2,7 @@ package wit.edu.moblieapp.afinal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,6 +32,13 @@ public class LoginActivity extends AppCompatActivity {
 
         db.execSQL(UserSQL);
         db.execSQL(VideoSQL);
+
+        if(!userExist("googleTest", db)) {
+            ContentValues values = new ContentValues();
+            values.put("username", "googleTest");
+            values.put("password", "googleTest123");
+            db.insert("Users", null, values);
+        }
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
         TextView createButton = (TextView) findViewById(R.id.createButton);
